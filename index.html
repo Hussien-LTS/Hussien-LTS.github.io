@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hussein AL Mohamad — Full Stack Developer</title>
+  <meta name="description"
+    content="Portfolio of Hussein AL Mohamad, Full Stack Developer specializing in Node.js, NestJS, TypeScript, and React.">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-alt: #161b22;
+      --card: #1c2128;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --accent2: #3fb950;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13, 17, 23, .92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .logo {
+      font-family: var(--mono);
+      font-weight: 700;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .logo span {
+      color: var(--accent2);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: .9rem;
+      font-family: var(--mono);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 96px 0 72px;
+    }
+
+    .hero .kicker {
+      font-family: var(--mono);
+      color: var(--accent2);
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .hero h2 {
+      font-size: clamp(1.2rem, 3.5vw, 1.7rem);
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 22px;
+    }
+
+    .hero p {
+      max-width: 640px;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-family: var(--mono);
+      font-size: .9rem;
+      border: 1px solid var(--accent);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0d1117;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      opacity: .9;
+      text-decoration: none;
+    }
+
+    .btn-ghost {
+      color: var(--accent);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(88, 166, 255, .1);
+      text-decoration: none;
+    }
+
+    h3.section-title {
+      font-size: 1.5rem;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h3.section-title::before {
+      content: attr(data-num);
+      font-family: var(--mono);
+      color: var(--accent2);
+      font-size: 1rem;
+    }
+
+    h3.section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Experience */
+    .job {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 26px 28px;
+      margin-bottom: 20px;
+    }
+
+    .job:hover {
+      border-color: var(--accent);
+    }
+
+    .job-head {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .job h4 {
+      font-size: 1.08rem;
+    }
+
+    .job .company {
+      color: var(--accent);
+      font-size: .95rem;
+    }
+
+    .job .dates {
+      font-family: var(--mono);
+      color: var(--muted);
+      font-size: .82rem;
+      white-space: nowrap;
+    }
+
+    .job ul {
+      margin: 12px 0 0 18px;
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .job li {
+      margin-bottom: 7px;
+    }
+
+    /* Project */
+    .project {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px;
+    }
+
+    .project h4 {
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+    }
+
+    .project .proj-link {
+      font-family: var(--mono);
+      font-size: .85rem;
+    }
+
+    .project p {
+      color: var(--muted);
+      margin: 12px 0;
+      font-size: .95rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: .75rem;
+      color: var(--accent2);
+      background: rgba(63, 185, 80, .1);
+      border: 1px solid rgba(63, 185, 80, .35);
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 22px;
+    }
+
+    .skill-card h5 {
+      font-family: var(--mono);
+      color: var(--accent);
+      font-size: .85rem;
+      margin-bottom: 10px;
+    }
+
+    .skill-card p {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    /* Education */
+    .edu {
+      border-left: 2px solid var(--border);
+      padding-left: 22px;
+      margin-bottom: 26px;
+    }
+
+    .edu h4 {
+      font-size: 1.02rem;
+    }
+
+    .edu .dates {
+      font-family: var(--mono);
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .edu p {
+      color: var(--muted);
+      font-size: .92rem;
+      margin-top: 4px;
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+    }
+
+    .contact p {
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 28px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: .78rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">hussein<span>.dev</span></div>
+      <div class="nav-links">
+        <a href="#experience">experience</a>
+        <a href="#project">project</a>
+        <a href="#skills">skills</a>
+        <a href="#education">education</a>
+        <a href="#contact">contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero container">
+    <p class="kicker">// Hi, my name is</p>
+    <h1>Hussein AL Mohamad</h1>
+    <h2>Full Stack Developer — Node.js · NestJS · TypeScript · React</h2>
+    <p>Full Stack Developer with 3+ years of experience designing and delivering production-ready
+      web applications. Experienced in microservice architecture, RESTful API integration, and
+      relational and non-relational databases — with a proven track record of mentoring developers
+      and driving projects from requirements to deployment.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+      <a class="btn btn-ghost" href="https://github.com/Hussien-LTS" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/hussein-almohamd/" target="_blank"
+        rel="noopener">LinkedIn</a>
+    </div>
+  </header>
+
+  <section id="experience" class="container">
+    <h3 class="section-title" data-num="01.">Experience</h3>
+
+    <div class="job">
+      <div class="job-head">
+        <div>
+          <h4>Node.js Developer — NestJS &amp; TypeScript Microservices</h4>
+          <div class="company">Redbridge Consulting Services · Amman, Jordan</div>
+        </div>
+        <div class="dates">Apr 2025 – Sep 2025</div>
+      </div>
+      <ul>
+        <li>Designed and shipped TypeScript microservices with NestJS, translating client requirements into modular,
+          production-ready components.</li>
+        <li>Maintained high code quality through clean architecture practices, comprehensive inline documentation, and
+          structured code reviews.</li>
+        <li>Partnered with clients and cross-functional teams throughout the project lifecycle, contributing to
+          on-schedule delivery of all milestones.</li>
+        <li>Identified scope gaps and took proactive ownership of additional responsibilities to unblock team progress.
+        </li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div>
+          <h4>Teaching Assistant — JavaScript, Node.js &amp; React</h4>
+          <div class="company">Luminus College (ASAC Coding Bootcamp) · Amman, Jordan</div>
+        </div>
+        <div class="dates">Mar 2021 – Jan 2025</div>
+      </div>
+      <ul>
+        <li>Mentored cohorts of students across a full-stack JavaScript curriculum (HTML, CSS, JavaScript, Node.js,
+          React) over a 4-year tenure.</li>
+        <li>Led instructional sessions and delivered targeted debugging support, reinforcing core programming concepts.
+        </li>
+        <li>Authored and refined curriculum materials to align course content with evolving industry practices.</li>
+        <li>Onboarded and coached incoming Teaching Assistants, standardizing support processes and reducing ramp-up
+          time.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div>
+          <h4>Full Stack Developer (Part-time)</h4>
+          <div class="company">Top Zone Solution · Amman, Jordan</div>
+        </div>
+        <div class="dates">Oct 2022 – Jan 2023</div>
+      </div>
+      <ul>
+        <li>Led back-end development of a restaurant management platform using Node.js, MongoDB, and PostgreSQL,
+          integrating RESTful APIs with a pre-built Flutter mobile application.</li>
+        <li>Engineered responsive React.js front-end features following client UI specifications, validated through
+          cross-device testing.</li>
+        <li>Extended multiple client projects with new functionality that improved UX across client- and server-side
+          components.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="project" class="container">
+    <h3 class="section-title" data-num="02.">Featured Project</h3>
+    <div class="project">
+      <h4>Al-Atheer Dental Clinic</h4>
+      <a class="proj-link" href="https://atheerclinic.com/ar" target="_blank" rel="noopener">atheerclinic.com ↗</a>
+      <p>This website is for a dental clinic in Makkah, Saudi Arabia. Patients can browse the
+        clinic's services, check out real before-and-after results, book an appointment online.
+        The whole site works in both Arabic and English —
+        including proper right-to-left layout, which is trickier to get right than it sounds.</p>
+      <div class="tags">
+        <span class="tag">Next.js</span>
+        <span class="tag">React</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">i18n / RTL</span>
+        <span class="tag">Online Booking</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="container">
+    <h3 class="section-title" data-num="03.">Technical Skills</h3>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h5>Languages</h5>
+        <p>JavaScript (ES6+), TypeScript, HTML5, CSS3, C#</p>
+      </div>
+      <div class="skill-card">
+        <h5>Frameworks &amp; Libraries</h5>
+        <p>Node.js, NestJS, Express.js, React.js, .NET · Familiar with Next.js</p>
+      </div>
+      <div class="skill-card">
+        <h5>Databases &amp; ORMs</h5>
+        <p>PostgreSQL, MySQL, MongoDB, SQL · Sequelize, Prisma, TypeORM</p>
+      </div>
+      <div class="skill-card">
+        <h5>DevOps &amp; Cloud</h5>
+        <p>Docker, Docker Compose, Git, GitHub · Heroku, Render, Netlify (CI/CD)</p>
+      </div>
+      <div class="skill-card">
+        <h5>UI &amp; Tools</h5>
+        <p>Bootstrap, Material UI, jQuery</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="container">
+    <h3 class="section-title" data-num="04.">Education</h3>
+    <div class="edu">
+      <h4>Full Stack Web Development — ASAC / Code Fellows</h4>
+      <div class="dates">Jun 2020 – Oct 2020</div>
+      <p>HTML, CSS, JavaScript, jQuery, Node.js, React, MongoDB, PostgreSQL</p>
+    </div>
+    <div class="edu">
+      <h4>British Diploma in Civil Engineering — LTUC</h4>
+      <div class="dates">Oct 2016 – Mar 2019</div>
+      <p>GPA: 89% · Ranked in the top 10 of graduating class</p>
+    </div>
+  </section>
+
+  <section id="contact" class="container contact">
+    <h3 class="section-title" data-num="05.">Get In Touch</h3>
+    <p>I'm open to new opportunities and collaborations. Whether you have a question
+      or just want to say hi, my inbox is always open.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:mo.hussein@zohomail.com">mo.hussein@zohomail.com</a>
+      <a class="btn btn-ghost" href="tel:+962780189321">+962 780 189 321</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Hussein AL Mohamad · Built with plain HTML &amp; CSS
+  </footer>
+
+</body>
+
+</html>
